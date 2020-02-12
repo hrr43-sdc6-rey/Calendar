@@ -9,8 +9,11 @@
   "scripts": {
     "seed": "node database/seed.js",
     "react-dev": "webpack -d --watch",
+    "build": "webpack",
     "server-dev": "nodemon server/index.js",
-    "test": "jest --updateSnapshot --coverage"
+    "start": "node server",
+    "test": "jest --updateSnapshot --coverage",
+    "mongo": "sudo service mongod start"
   },
   "dependencies": {
     "@babel/plugin-proposal-class-properties": "^7.8.3",
@@ -28,6 +31,7 @@
     "moment": "^2.24.0",
     "mongoose": "^5.8.9",
     "mysql": "^2.18.1",
+    "process": "^0.11.10",
     "prop-types": "^15.7.2",
     "react": "^16.12.0",
     "react-dates": "^21.7.0",

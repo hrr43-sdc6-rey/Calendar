@@ -71,6 +71,8 @@ font-size: 1em;
 
 `;
 
+const ipAddress = 'http://localhost:3005';
+
 class App extends Component {
   constructor(props) {
     super(props);
@@ -87,7 +89,7 @@ class App extends Component {
 
   componentDidMount() {
     const { expId } = this.state;
-    axios.get(`http://18.223.132.12:3005/calendar/${expId}`)
+    axios.get(`${ipAddress}/calendar/${expId}`)
       .then((res) => {
         this.setState({
           months: res.data[0].dates,

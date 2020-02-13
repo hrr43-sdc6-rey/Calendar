@@ -78,37 +78,30 @@ const seed = () => {
 const date1 = new Date();
 
 
-const createRecords = () => {
-  for (let j = 0; j < 1; j += 1) {
-    const batch = [];
-    for (let i = 1; i <= 100; i += 1) {
-      batch.push({
-        exp_id: j * 100 + i,
-        dates: seed(),
-      });
-    }
-
-    dateInCalendar.insertMany(batch, (err2) => {
-      if (err2) {
-        return console.log(err2);
-      }
-      if (j === 0) {
-        console.log('Complete');
-        console.log((new Date() - date1) / 1000);
-        return process.exit(0);
-      }
-      return null;
+async function createRecords(num) {
+  const batch = [];
+  const len = 100;
+  for (let i = 1; i <= len; i += 1) {
+    batch.push({
+      exp_id: i + num,
+      dates: seed(),
     });
   }
-};
+  await dateInCalendar.insertMany(batch);
+  console.log(`${num + len} in ${((new Date()) - date1) / 1000} seconds`);
+}
 
-dateInCalendar.deleteMany({}, (err1) => {
-  if (err1) {
-    return console.log(err1);
-  }
-  createRecords();
-  return null;
-});
+async function deleteRecords() {
+  await dateInCalendar.deleteMany({});
+}
+
+deleteRecords()
+  .then(() => {
+    createRecords(0)
+      .then(() => {
+        process.exit(0);
+      });
+  });
 
 // let counter = 0;
 // for (let i = 1; i <= 100; i += 1) {

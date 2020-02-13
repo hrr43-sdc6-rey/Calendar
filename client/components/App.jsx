@@ -100,7 +100,7 @@ class App extends Component {
       });
   }
   // buttons are visible depending on the state
-  nextSlide () {
+  nextSlide() {
     const { slide } = this.state;
     this.setState({
       slide: slide + 1,
@@ -134,14 +134,12 @@ class App extends Component {
         <Header>Availability</Header>
         <WrapperMain>
           <W>{slide !== 0 ? <BtnPrev type="submit" onClick={this.prevSlide}>&#60;</BtnPrev> : <div></div>}</W>
-        <Wrapper>
-
-          <Slider id="Slider">
-            <Calendar months={months} />
-          </Slider>
-
-        </Wrapper>
-        {slide !== 2 ? <BtnNext type="submit" onClick={this.nextSlide}>&#62;</BtnNext> : <div></div>}
+          <Wrapper>
+            <Slider id="Slider">
+              <Calendar months={months} />
+            </Slider>
+          </Wrapper>
+          {slide !== 2 ? <BtnNext type="submit" onClick={this.nextSlide}>&#62;</BtnNext> : <div></div>}
         </WrapperMain>
       </CalendarArea>
     );

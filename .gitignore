@@ -23,3 +23,7 @@ coverage
 
 config/
 node_modules
+
+
+# ignore database csv file
+database/*.csv

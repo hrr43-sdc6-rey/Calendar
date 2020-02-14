@@ -30,13 +30,15 @@ function getData(batchIndex, batchSize) {
 }
 
 function runBatches() {
-  const batchAmt = 100;
-  const batchSize = 100;
+  // set these two variables to control the overall data size
+  const batchAmt = 100;    // number of batches to run
+  const batchSize = 100;   // number of records per batch
+
   let batchIndex = 0;
   function oneBatch() {
     batchWrite(getData(batchIndex, batchSize), () => {
       batchIndex += 1;
-      console.log(`batchIndex: ${batchIndex}  batchSize: ${batchSize}  batchTotal: ${batchIndex * batchSize}`);
+      console.log(`batchIndex: ${batchIndex}  batchSize: ${batchSize}  batchTotal: ${batchIndex * batchSize}  timer: ${((new Date()) - startTimer)/1000} secs`);
       // check to see if more batches need to be run
       if (batchIndex < batchAmt) {
         oneBatch();
@@ -46,4 +48,6 @@ function runBatches() {
   oneBatch();
 }
 
-runBatches();
+const startTimer = new Date();
+
+runBatches();   //  let's do this thing

@@ -1,20 +1,20 @@
 const mongoose = require('mongoose');
+const AutoIncrement = require('mongoose-sequence')(mongoose);
 
 mongoose.connect('mongodb://localhost/calendar', {
   useNewUrlParser: true,
   useUnifiedTopology: true,
   useCreateIndex: true,
+  useFindAndModify: false,
 });
 
 // const schema = require('./schema.js');
 
 const dateSchema = new mongoose.Schema({
-  exp_id: {
-    type: Number,
-    unique: true,
-  },
   dates: [],
 });
+dateSchema.plugin(AutoIncrement, { inc_field: 'exp_id' });
+
 const Calendar = mongoose.model('Experience', dateSchema);
 
 const get = (id, cb1, cb2) => {

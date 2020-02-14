@@ -13,4 +13,10 @@ app.get('/calendar/:id', (req, res) => {
     (data) => { res.send(data); });
 });
 
+app.post('/calendar/', (req, res) => {
+  db.create(req.params.id,
+    () => { res.sendStatus(400); },
+    (data) => { res.send(data); });
+});
+
 app.listen(port, () => { console.log(`Listening on port ${port}`); });

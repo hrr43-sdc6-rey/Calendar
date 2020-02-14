@@ -1,15 +1,18 @@
 const process = require('process');
 const mongoose = require('mongoose');
+const AutoIncrement = require('mongoose-sequence')(mongoose);
 
 mongoose.connect('mongodb://localhost/calendar', {
   useNewUrlParser: true,
   useUnifiedTopology: true,
+  useCreateIndex: true,
 });
 
 const dateSchema = new mongoose.Schema({
   exp_id: Number,
   dates: [],
 });
+dateSchema.plugin(AutoIncrement, { inc_field: 'exp_id' });
 
 const dateInCalendar = mongoose.model('Experience', dateSchema);
 
@@ -83,11 +86,11 @@ async function createRecords(num) {
   const len = 100;
   for (let i = 1; i <= len; i += 1) {
     batch.push({
-      exp_id: i + num,
+      // exp_id: i + num,
       dates: seed(),
     });
   }
-  await dateInCalendar.insertMany(batch);
+  await dateInCalendar.create(batch);
   console.log(`${num + len} in ${((new Date()) - date1) / 1000} seconds`);
 }
 

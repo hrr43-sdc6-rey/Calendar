@@ -1,4 +1,3 @@
-
 const createCsvWriter = require('csv-writer').createObjectCsvWriter;
 
 const csvWriter = createCsvWriter({
@@ -13,7 +12,6 @@ function batchWrite(data, cb) {
   csvWriter
     .writeRecords(data)
     .then(() => {
-      // console.log(`${data.length} records created`);
       cb();
     });
 }
@@ -21,10 +19,12 @@ function batchWrite(data, cb) {
 function getData(batchIndex, batchSize) {
   const data = [];
   for (let i = batchIndex * batchSize + 1; i <= batchIndex * batchSize + batchSize; i += 1) {
+    // Push and define all my data below
     data.push({
       exp_id: i,
       dates: '[{},{},{}]',
     });
+    // Push and define all my data above
   }
   return data;
 }

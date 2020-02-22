@@ -1,11 +1,12 @@
 const createCsvWriter = require('csv-writer').createObjectCsvWriter;
 
 const csvWriter = createCsvWriter({
-  path: 'out.csv',
+  path: 'out2.csv',
   header: [
     { id: 'exp_id', title: 'exp_id' },
     { id: 'dates', title: 'dates' },
   ],
+  alwaysQuote: false,
 });
 
 function batchWrite(data, cb) {
@@ -50,20 +51,19 @@ const seed = () => {
     let line = 0;
     let place = weekdayOfFirstDayInMonth;
     for (let i = 1; i <= daysInMonth; i += 1) {
-      cdr[line][place].day = i.toString();
-      cdr[line][place].morning = Math.random() > 0.3;
-      cdr[line][place].lunch = Math.random() > 0.3;
+      cdr[line][place].d = i.toString();
+      cdr[line][place].m = Math.random() > 0.3;
+      cdr[line][place].l = Math.random() > 0.3;
       place += 1;
       if (place === 7) {
         line += 1;
         place = 0;
       }
     }
-
     data.push({
-      year,
-      month,
-      days: cdr,
+      "year": year,
+      "month": month,
+       day: cdr,
     });
 
     // data.push(cdr)
@@ -93,8 +93,8 @@ function getData(batchIndex, batchSize) {
 
 function runBatches() {
   // set these two variables to control the overall data size
-  const batchAmt = 1000;    // number of batches to run
-  const batchSize = 1000;   // number of records per batch
+  const batchAmt = 3; // number of batches to run
+  const batchSize = 3; // number of records per batch
 
   let batchIndex = 0;
   function oneBatch() {
@@ -112,4 +112,4 @@ function runBatches() {
 
 const startTimer = new Date();
 
-runBatches();   //  let's do this thing
+runBatches(); //  let's do this thing

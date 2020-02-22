@@ -23,8 +23,8 @@ const Month = ({ month }) => (
       month.month === 5 ? "June": "July"
       }</caption>
       <tbody>
-        {month.days.map((row) =>
-          <Row days = {row} />
+        {month.day.map((row, i) =>
+          <Row key={i} days = {row} />
         )}
       </tbody>
     </table>

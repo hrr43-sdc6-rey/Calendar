@@ -5,16 +5,16 @@ import Day from './Day.jsx';
 // each td hs fixed width and length
 const Row = ({ days }) => (
   <tr>
-    {days.map((day) => (
-      <td>
-        <Day day={day.day} morning={day.morning} lunch={day.lunch} />
+    {days.map((day, i) => (
+      <td key={i}>
+        <Day day={day.d} morning={day.m} lunch={day.l} />
       </td>
     ))}
   </tr>
 );
 
 Day.propTypes = {
-  days: PropTypes.array.isRequired,
+  days: PropTypes.array,
 };
 
 export default Row;

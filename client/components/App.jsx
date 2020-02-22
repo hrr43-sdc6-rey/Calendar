@@ -91,8 +91,9 @@ class App extends Component {
     const { expId } = this.state;
     axios.get(`${ipAddress}/calendar/${expId}`)
       .then((res) => {
+        // console.log(res.data.dates);
         this.setState({
-          months: res.data[0].dates,
+          months: res.data.dates,
         });
       })
       .catch((err) => {

@@ -1,5 +1,6 @@
+require('newrelic');
 const express = require('express');
-const db = require('../database');
+const db = require('../database/postgres');
 
 const port = process.env.PORT || 3005;
 
@@ -10,13 +11,13 @@ app.use(express.static('public'));
 app.get('/calendar/:id', (req, res) => {
   db.get(req.params.id,
     () => { res.sendStatus(400); },
-    (data) => { res.send(data); });
+    (data) => { res.json(data); });
 });
 
-app.post('/calendar/', (req, res) => {
-  db.create(req.params.id,
-    () => { res.sendStatus(400); },
-    (data) => { res.send(data); });
-});
+// app.post('/calendar/', (req, res) => {
+//   db.create(req.params.id,
+//     () => { res.sendStatus(400); },
+//     (data) => { res.send(data); });
+// });
 
 app.listen(port, () => { console.log(`Listening on port ${port}`); });

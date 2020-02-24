@@ -15,10 +15,11 @@
     "test": "jest --updateSnapshot --coverage",
     "mongo": "sudo service mongod start",
     "artillerytest": "artillery quick --count 10 -n 20 https://artillery.io/",
-    "artillery1": "artillery quick --count 100 -n 10 http://localhost:3005/?id=1234567",
-    "artillery2": "artillery quick --count 100 -n 20 http://localhost:3005/?id=1234567",
-    "artillery3": "artillery quick --count 100 -n 100 http://localhost:3005/?id=1234567",
-    "artillery4": "artillery quick --count 100 -n 200 http://localhost:3005/?id=1234567"
+    "artilleryMillion": "artillery quick --count 1000 -n 1000 http://localhost:3005/calendar/1234567",
+    "artillery1": "artillery quick --count 1 -n 1 http://localhost:3005/calendar/1234567",
+    "artillery10": "artillery quick --count 1 -n 10 http://localhost:3005/calendar/1234567",
+    "artillery100": "artillery quick --count 10 -n 10 http://localhost:3005/calendar/1234567",
+    "artillery1000": "artillery quick --count 10 -n 100 http://localhost:3005/calendar/1234567"
   },
   "dependencies": {
     "@babel/plugin-proposal-class-properties": "^7.8.3",
